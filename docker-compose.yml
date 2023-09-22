@@ -12,9 +12,8 @@ services:
       - C:\Users\menze\post\post_node_1:/container/go-spacemesh/build/post_data
     environment:
       - SMESHING_COINBASE_ADDRESS=sm1qqqqqqrpz2djpyfzqa9dlrxv428fehnr78fusfqc8qr30
-      # - FILE_SIZE=34359738368
-      # - NUMUNITS=4
-      # - METRICPORT=1011
+      - FILE_SIZE=2147483648
+      - NUMUNITS=8
       - CONFIG=./config.mainnet.json
     restart: unless-stopped
     networks: 

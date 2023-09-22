@@ -22,5 +22,5 @@ WORKDIR /container/go-spacemesh/build
 COPY ./config.mainnet.json ./config.mainnet.json
 RUN chmod +x go-spacemesh
 EXPOSE 7513 
-CMD ./go-spacemesh --config config.mainnet.json --data-folder ./volume/node_data --smeshing-opts-datadir ./post_data --metrics --smeshing-start --smeshing-coinbase $SMESHING_COINBASE_ADDRESS
+CMD ./go-spacemesh --config config.mainnet.json --data-folder ./volume/node_data --smeshing-opts-datadir ./post_data --metrics --smeshing-start --smeshing-coinbase $SMESHING_COINBASE_ADDRESS --smeshing-opts-provider 4294967295 --smeshing-opts-maxfilesize $FILE_SIZE --smeshing-opts-numunits $NUMUNITS
 # ENTRYPOINT [ "./go-spacemesh", "--config", "config.mainnet.json", "--data-folder", "./node_data" ]
