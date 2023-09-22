@@ -1,0 +1,1 @@
+docker run --rm -d -p 32456:9090 --name=prometheus --network spacemesh --network-alias prometheus -v .\prometheus:/etc/prometheus -v prometheus:/prometheus prom/prometheus

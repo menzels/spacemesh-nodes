@@ -1,0 +1,1 @@
+docker run --rm -d -p 32556:3000 --name=grafana --network spacemesh --network-alias grafana -v .\grafana:/var/lib/grafana grafana/grafana-oss

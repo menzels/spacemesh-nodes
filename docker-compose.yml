@@ -1,0 +1,76 @@
+version: "3"
+services:
+  spacemesh-node-01: &sm_node
+    container_name: spacemesh-node-01
+    build: .
+    image: spacemesh-node
+    # privileged: true
+    ports:
+      - "1010" 
+    volumes:
+      - spacemesh-node-01:/container/go-spacemesh/build/volume
+      - C:\Users\menze\post\post_node_1:/container/go-spacemesh/build/post_data
+    environment:
+      - SMESHING_COINBASE_ADDRESS=sm1qqqqqqrpz2djpyfzqa9dlrxv428fehnr78fusfqc8qr30
+      # - FILE_SIZE=34359738368
+      # - NUMUNITS=4
+      # - METRICPORT=1011
+      - CONFIG=./config.mainnet.json
+    restart: unless-stopped
+    networks: 
+      - spacemesh
+
+
+  # spacemesh-node-02:
+  #   container_name: spacemesh-node-02
+  #   build: .
+  #   image: spacemesh-node
+  #   ports:
+  #     - "1010" 
+  #   volumes:
+  #     - spacemesh-node-02:/container/go-spacemesh/build/volume
+  #   environment:
+  #     # - SMESHING_COINBASE_ADDRESS=sm1qqqqqq...
+  #     # - FILE_SIZE=34359738368
+  #     # - NUMUNITS=4
+  #     # - METRICPORT=1011
+  #     - CONFIG=./config.mainnet.json
+  #   restart: unless-stopped
+  #   networks: 
+  #     - spacemesh
+
+      
+  # spacemesh-node-03:
+  #   <<: *sm_node
+  #   container_name: spacemesh-node-03
+  #   ports:
+  #     - "1010" 
+  #   volumes:
+  #     - spacemesh-node-03:/container/go-spacemesh/build/volume
+  #   environment:
+  #     # - SMESHING_COINBASE_ADDRESS=sm1qqqqqq...
+  #     # - FILE_SIZE=34359738368
+  #     # - NUMUNITS=4
+  #     # - METRICPORT=1011
+  #     - CONFIG=./config.mainnet.json
+  #   restart: unless-stopped
+  #   networks: 
+  #     - spacemesh
+
+
+networks:
+  spacemesh:
+    external: true
+    name: spacemesh
+
+
+volumes:
+  spacemesh-node-01:
+    external: true
+    name: spacemesh-node-01
+  spacemesh-node-02:
+    external: true
+    name: spacemesh-node-02
+  spacemesh-node-03:
+    external: true
+    name: spacemesh-node-03
