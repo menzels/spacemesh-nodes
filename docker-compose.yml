@@ -1,24 +1,29 @@
 version: "3"
 services:
-  spacemesh-node-01: &sm_node
+  spacemesh-node-01: 
     container_name: spacemesh-node-01
     build: .
     image: spacemesh-node
-    # privileged: true
     ports:
+      # expose default metrics port
       - "1010" 
     volumes:
+      # the volume for the node state, db, etc.
       - spacemesh-node-01:/container/go-spacemesh/build/volume
+      # mount the post data folder into the container
       - C:\Users\menze\post\post_node_1:/container/go-spacemesh/build/post_data
     environment:
       - SMESHING_COINBASE_ADDRESS=sm1qqqqqqrpz2djpyfzqa9dlrxv428fehnr78fusfqc8qr30
+      # use parameters from postdata_metadata.json
       - FILE_SIZE=2147483648
       - NUMUNITS=8
+      # mainnet config
       - CONFIG=./config.mainnet.json
     restart: unless-stopped
     networks: 
       - spacemesh
 
+  # run more nodes with different config. !! make sure to never run two nodes with the same post folder, you will get banned !!
 
   # spacemesh-node-02:
   #   container_name: spacemesh-node-02
@@ -57,12 +62,14 @@ services:
   #     - spacemesh
 
 
+# the internal network for the nodes and grafana and prometheus to talk to each other
 networks:
   spacemesh:
     external: true
     name: spacemesh
 
 
+# node_data volumes, one for each node
 volumes:
   spacemesh-node-01:
     external: true

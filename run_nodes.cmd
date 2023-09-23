@@ -1,3 +1,4 @@
+@REM This is an older version, mounting windows folders via -v is slow. better use docker volumes, see docker-compose variant
 @echo off
 setlocal ENABLEDELAYEDEXPANSION
 for /d %%i in (.\nodes\*) do (
